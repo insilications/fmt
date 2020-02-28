@@ -4,7 +4,7 @@
 #
 Name     : fmt
 Version  : 6.0.0
-Release  : 2
+Release  : 3
 URL      : https://github.com/fmtlib/fmt/archive/6.0.0.tar.gz
 Source0  : https://github.com/fmtlib/fmt/archive/6.0.0.tar.gz
 Summary  : A modern formatting library
@@ -13,10 +13,8 @@ License  : MIT Python-2.0
 Requires: fmt-lib = %{version}-%{release}
 Requires: fmt-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
-BuildRequires : buildreq-mvn
 BuildRequires : buildreq-qmake
 BuildRequires : glibc-dev
-BuildRequires : gradle
 
 %description
 This directory contains build support files such as
@@ -54,13 +52,14 @@ license components for the fmt package.
 
 %prep
 %setup -q -n fmt-6.0.0
+cd %{_builddir}/fmt-6.0.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570483370
+export SOURCE_DATE_EPOCH=1582921759
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -83,11 +82,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test
 
 %install
-export SOURCE_DATE_EPOCH=1570483370
+export SOURCE_DATE_EPOCH=1582921759
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fmt
-cp LICENSE.rst %{buildroot}/usr/share/package-licenses/fmt/LICENSE.rst
-cp doc/python-license.txt %{buildroot}/usr/share/package-licenses/fmt/doc_python-license.txt
+cp %{_builddir}/fmt-6.0.0/LICENSE.rst %{buildroot}/usr/share/package-licenses/fmt/a6571b819c2fb290e2bb182e92a7a20d7d42318d
+cp %{_builddir}/fmt-6.0.0/doc/python-license.txt %{buildroot}/usr/share/package-licenses/fmt/f19fa3302647d3061306ffb9ef072a777c166e0b
 pushd clr-build
 %make_install
 popd
@@ -123,5 +122,5 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/fmt/LICENSE.rst
-/usr/share/package-licenses/fmt/doc_python-license.txt
+/usr/share/package-licenses/fmt/a6571b819c2fb290e2bb182e92a7a20d7d42318d
+/usr/share/package-licenses/fmt/f19fa3302647d3061306ffb9ef072a777c166e0b
