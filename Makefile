@@ -1,5 +1,6 @@
 PKG_NAME := fmt
-URL = https://github.com/fmtlib/fmt/archive/8.0.1/fmt-8.0.1.tar.gz
+URL = https://github.com/fmtlib/fmt.git
 ARCHIVES = 
+ARCHIVES_GIT = 
 
 include ../common/Makefile.common
